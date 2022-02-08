@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ffi.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,17 +49,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  late Future<Platform> platform;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  @override
+  void initState() {
+    super.initState();
+    // We make a call to the native API here, similar to how you would
+    // call a web server to retrieve a piece of information.
+    platform = api.platform();
   }
 
   @override
@@ -95,21 +93,30 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            const Text("You're running on"),
+            FutureBuilder<Platform>(
+              future: platform,
+              builder: (context, snap) {
+                if (snap.error != null) {
+                  debugPrint(snap.error.toString());
+                  return const Text('Unknown OS');
+                }
+                final data = snap.data;
+                return const {
+                      Platform.Ios: Text('iOS'),
+                      Platform.Windows: Text('Windows'),
+                      Platform.Android: Text('Android'),
+                      Platform.Unix: Text('Unix'),
+                      Platform.MacApple: Text('MacOS with Apple Silicon'),
+                      Platform.MacIntel: Text('MacOS'),
+                      Platform.Wasm: Text('the Web')
+                    }[data] ??
+                    const CircularProgressIndicator();
+              },
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
