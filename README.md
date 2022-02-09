@@ -10,13 +10,13 @@ To begin, ensure that you have a working installation of the following items:
 - [Rust language](https://rustup.rs/)
 - Appropriate [Rust targets](https://rust-lang.github.io/rustup/cross-compilation.html) for cross-compiling to your device
 - For Android targets:
+    - Install [cargo-ndk](https://github.com/bbqsrc/cargo-ndk#installing)
     - Install Android NDK 22, then put its path in one of the `gradle.properties`, e.g.:
 
 ```
 echo "ANDROID_NDK=.." >> ~/.gradle/gradle.properties
 ```
 
-    - Install [cargo-ndk](https://github.com/bbqsrc/cargo-ndk#installing)
 - Web is not supported yet.
 
 Then go ahead and run `flutter run`! When you're ready, refer to our documentation
