@@ -15,7 +15,7 @@ gen:
         --c-output ios/Runner/bridge_generated.h
     cp ios/Runner/bridge_generated.h macos/Runner/bridge_generated.h
     # Uncomment this line to invoke build_runner as well
-    # dart run build_runner build
+    # flutter pub run build_runner build
 
 lint:
     cd native && cargo fmt
