@@ -8,11 +8,15 @@ libraries via `flutter_rust_bridge`.
 To begin, ensure that you have a working installation of the following items:
 - [Flutter SDK](https://docs.flutter.dev/get-started/install)
 - [Rust language](https://rustup.rs/)
-- An appropriate Rust toolchain for your target device:
-    - Android: [cargo-ndk](https://github.com/bbqsrc/cargo-ndk#installing)
-    - Windows and Linux (optional): [corrosion](https://github.com/corrosion-rs/corrosion#installation)
-    - MacOS and iOS are supported out of the box.
-    - Web is not supported yet.
+- Appropriate [Rust targets](https://rust-lang.github.io/rustup/cross-compilation.html) for cross-compiling to your device
+- For Android targets:
+    - Install Android NDK 22, then put its path in one of the `gradle.properties`, e.g.:
+    ```
+    # ~/.gradle/gradle.properties
+    ANDROID_NDK=..
+    ```
+    - Install [cargo-ndk](https://github.com/bbqsrc/cargo-ndk#installing)
+- Web is not supported yet.
 
 Then go ahead and run `flutter run`! When you're ready, refer to our documentation
 [here](https://fzyzcjy.github.io/flutter_rust_bridge/index.html)
