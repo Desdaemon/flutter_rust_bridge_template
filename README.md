@@ -11,10 +11,11 @@ To begin, ensure that you have a working installation of the following items:
 - Appropriate [Rust targets](https://rust-lang.github.io/rustup/cross-compilation.html) for cross-compiling to your device
 - For Android targets:
     - Install Android NDK 22, then put its path in one of the `gradle.properties`, e.g.:
-    ```
-    # ~/.gradle/gradle.properties
-    ANDROID_NDK=..
-    ```
+
+```
+echo "ANDROID_NDK=.." >> ~/.gradle/gradle.properties
+```
+
     - Install [cargo-ndk](https://github.com/bbqsrc/cargo-ndk#installing)
 - Web is not supported yet.
 
