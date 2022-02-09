@@ -10,8 +10,8 @@ To begin, ensure that you have a working installation of the following items:
 - [Rust language](https://rustup.rs/)
 - An appropriate Rust toolchain for your target device:
     - Android: [cargo-ndk](https://github.com/bbqsrc/cargo-ndk#installing)
-    - iOS: [cargo-lipo](https://github.com/timnn/cargo-lipo#installation)
-    - Desktop platforms are supported out of the box.
+    - Windows and Linux (optional): [corrosion](https://github.com/corrosion-rs/corrosion#installation)
+    - MacOS and iOS are supported out of the box.
     - Web is not supported yet.
 
 Then go ahead and run `flutter run`! When you're ready, refer to our documentation
