@@ -407,6 +407,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = "${DERIVED_FILE_DIR}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_STYLE = debugging;
+				SWIFT_OBJC_BRIDGING_HEADER = Runner/bridge_generated.h;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Profile;
@@ -534,6 +536,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = "${DERIVED_FILE_DIR}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_STYLE = debugging;
+				SWIFT_OBJC_BRIDGING_HEADER = Runner/bridge_generated.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -555,6 +559,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = "${DERIVED_FILE_DIR}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_STYLE = debugging;
+				SWIFT_OBJC_BRIDGING_HEADER = Runner/bridge_generated.h;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
