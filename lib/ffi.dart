@@ -11,5 +11,5 @@ final _dylib = io.Platform.isMacOS
         ? '$_base.dll'
         : 'lib$_base.so';
 
-late final Native api = NativeImpl(
-    io.Platform.isIOS ? DynamicLibrary.process() : DynamicLibrary.open(_dylib));
+late final Native api =
+    NativeImpl(io.Platform.isIOS || io.Platform.isMacOS ? DynamicLibrary.executable() : DynamicLibrary.open(_dylib));

@@ -13,11 +13,16 @@ gen:
         --rust-input native/src/api.rs \
         --dart-output lib/bridge_generated.dart \
         --c-output ios/Runner/bridge_generated.h
+    cp ios/Runner/bridge_generated.h macos/Runner/bridge_generated.h
     # Uncomment this line to invoke build_runner as well
     # dart run build_runner build
 
 lint:
     cd native && cargo fmt
     dart format .
+
+clean:
+    flutter clean
+    cd native && cargo clean
 
 # vim:expandtab:sw=4:ts=4

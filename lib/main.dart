@@ -49,13 +49,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late Future<Platform> platform;
+  Future<Platform>? platform;
 
   @override
   void initState() {
     super.initState();
-    // We make a call to the native API here, similar to how you would
-    // call a web server to retrieve a piece of information.
     platform = api.platform();
   }
 
@@ -97,21 +95,25 @@ class _MyHomePageState extends State<MyHomePage> {
             FutureBuilder<Platform>(
               future: platform,
               builder: (context, snap) {
+                final style = Theme.of(context).textTheme.headline4;
                 if (snap.error != null) {
                   debugPrint(snap.error.toString());
-                  return const Text('Unknown OS');
+                  return Text('Unknown OS', style: style);
                 }
-                final data = snap.data;
-                return const {
-                      Platform.Ios: Text('iOS'),
-                      Platform.Windows: Text('Windows'),
-                      Platform.Android: Text('Android'),
-                      Platform.Unix: Text('Unix'),
-                      Platform.MacApple: Text('MacOS with Apple Silicon'),
-                      Platform.MacIntel: Text('MacOS'),
-                      Platform.Wasm: Text('the Web')
-                    }[data] ??
-                    const CircularProgressIndicator();
+                if (snap.data != null) {
+                  final text = const {
+                    Platform.Ios: 'iOS',
+                    Platform.Windows: 'Windows',
+                    Platform.Android: 'Android',
+                    Platform.Unix: 'Unix',
+                    Platform.MacApple: 'MacOS with Apple Silicon',
+                    Platform.MacIntel: 'MacOS',
+                    Platform.Wasm: 'the Web'
+                  }[snap.data]!;
+                  return Text(text, style: style);
+                } else {
+                  return const CircularProgressIndicator();
+                }
               },
             )
           ],
