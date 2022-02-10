@@ -98,22 +98,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 final style = Theme.of(context).textTheme.headline4;
                 if (snap.error != null) {
                   debugPrint(snap.error.toString());
-                  return Text('Unknown OS', style: style);
+                  return Tooltip(message: snap.error.toString(), child: Text('Unknown OS', style: style));
                 }
-                if (snap.data != null) {
-                  final text = const {
-                    Platform.Ios: 'iOS',
-                    Platform.Windows: 'Windows',
-                    Platform.Android: 'Android',
-                    Platform.Unix: 'Unix',
-                    Platform.MacApple: 'MacOS with Apple Silicon',
-                    Platform.MacIntel: 'MacOS',
-                    Platform.Wasm: 'the Web'
-                  }[snap.data]!;
-                  return Text(text, style: style);
-                } else {
-                  return const CircularProgressIndicator();
-                }
+                if (snap.data == null) return const CircularProgressIndicator();
+                final text = const {
+                  Platform.Android: 'Android',
+                  Platform.Ios: 'iOS',
+                  Platform.MacApple: 'MacOS with Apple Silicon',
+                  Platform.MacIntel: 'MacOS',
+                  Platform.Windows: 'Windows',
+                  Platform.Unix: 'Unix',
+                  Platform.Wasm: 'the Web',
+                }[snap.data];
+                return Text(text ?? 'Unknown OS', style: style);
               },
             )
           ],
