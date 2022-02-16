@@ -49,12 +49,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Future<Platform>? platform;
+  late Future<Platform> platform;
+  late Future<bool> isRelease;
 
   @override
   void initState() {
     super.initState();
     platform = api.platform();
+    isRelease = api.rustReleaseMode();
   }
 
   @override
@@ -92,25 +94,34 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text("You're running on"),
-            FutureBuilder<Platform>(
-              future: platform,
+            FutureBuilder<List<dynamic>>(
+              future: Future.wait([platform, isRelease]),
               builder: (context, snap) {
                 final style = Theme.of(context).textTheme.headline4;
                 if (snap.error != null) {
                   debugPrint(snap.error.toString());
-                  return Tooltip(message: snap.error.toString(), child: Text('Unknown OS', style: style));
+                  return Tooltip(
+                    message: snap.error.toString(),
+                    child: Text('Unknown OS', style: style),
+                  );
                 }
-                if (snap.data == null) return const CircularProgressIndicator();
+
+                final data = snap.data;
+                if (data == null) return const CircularProgressIndicator();
+
+                final Platform platform = data[0];
+                final release = data[1] ? 'Release' : 'Debug';
                 final text = const {
-                  Platform.Android: 'Android',
-                  Platform.Ios: 'iOS',
-                  Platform.MacApple: 'MacOS with Apple Silicon',
-                  Platform.MacIntel: 'MacOS',
-                  Platform.Windows: 'Windows',
-                  Platform.Unix: 'Unix',
-                  Platform.Wasm: 'the Web',
-                }[snap.data];
-                return Text(text ?? 'Unknown OS', style: style);
+                      Platform.Android: 'Android',
+                      Platform.Ios: 'iOS',
+                      Platform.MacApple: 'MacOS with Apple Silicon',
+                      Platform.MacIntel: 'MacOS',
+                      Platform.Windows: 'Windows',
+                      Platform.Unix: 'Unix',
+                      Platform.Wasm: 'the Web',
+                    }[platform] ??
+                    'Unknown OS';
+                return Text(text + ' ($release)', style: style);
               },
             )
           ],

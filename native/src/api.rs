@@ -1,5 +1,3 @@
-use anyhow::Result;
-
 pub enum Platform {
     Unknown,
     Android,
@@ -11,8 +9,8 @@ pub enum Platform {
     Wasm,
 }
 
-pub fn platform() -> Result<Platform> {
-    Ok(if cfg!(windows) {
+pub fn platform() -> Platform {
+    if cfg!(windows) {
         Platform::Windows
     } else if cfg!(target_os = "android") {
         Platform::Android
@@ -28,5 +26,9 @@ pub fn platform() -> Result<Platform> {
         Platform::Unix
     } else {
         Platform::Unknown
-    })
+    }
+}
+
+pub fn rust_release_mode() -> bool {
+    cfg!(not(debug_assertions))
 }

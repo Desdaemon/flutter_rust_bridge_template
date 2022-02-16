@@ -13,6 +13,8 @@ import 'dart:ffi' as ffi;
 
 abstract class Native {
   Future<Platform> platform({dynamic hint});
+
+  Future<bool> rustReleaseMode({dynamic hint});
 }
 
 enum Platform {
@@ -44,6 +46,18 @@ class NativeImpl extends FlutterRustBridgeBase<NativeWire> implements Native {
         hint: hint,
       ));
 
+  Future<bool> rustReleaseMode({dynamic hint}) =>
+      executeNormal(FlutterRustBridgeTask(
+        callFfi: (port_) => inner.wire_rust_release_mode(port_),
+        parseSuccessData: _wire2api_bool,
+        constMeta: const FlutterRustBridgeTaskConstMeta(
+          debugName: "rust_release_mode",
+          argNames: [],
+        ),
+        argValues: [],
+        hint: hint,
+      ));
+
   // Section: api2wire
 
   // Section: api_fill_to_wire
@@ -51,6 +65,10 @@ class NativeImpl extends FlutterRustBridgeBase<NativeWire> implements Native {
 }
 
 // Section: wire2api
+bool _wire2api_bool(dynamic raw) {
+  return raw as bool;
+}
+
 Platform _wire2api_platform(dynamic raw) {
   return Platform.values[raw];
 }
@@ -90,6 +108,20 @@ class NativeWire implements FlutterRustBridgeWireBase {
           'wire_platform');
   late final _wire_platform =
       _wire_platformPtr.asFunction<void Function(int)>();
+
+  void wire_rust_release_mode(
+    int port_,
+  ) {
+    return _wire_rust_release_mode(
+      port_,
+    );
+  }
+
+  late final _wire_rust_release_modePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+          'wire_rust_release_mode');
+  late final _wire_rust_release_mode =
+      _wire_rust_release_modePtr.asFunction<void Function(int)>();
 
   void free_WireSyncReturnStruct(
     WireSyncReturnStruct val,
