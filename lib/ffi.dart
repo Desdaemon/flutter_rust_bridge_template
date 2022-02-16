@@ -11,11 +11,12 @@ import 'dart:io' as io;
 
 const _base = 'native';
 
-// On MacOS, using .dylib files as dynamic libraries is more common,
-// but to simplify the process we are only going to consider Windows and Unix-like systems.
+// On MacOS, the dynamic library is not bundled with the binary,
+// but rather directly **linked** against the binary.
 final _dylib = io.Platform.isWindows ? '$_base.dll' : 'lib$_base.so';
 
 // The late modifier delays initializing the value until it is actually needed,
 // leaving precious little time for the program to quickly start up.
-late final Native api =
-    NativeImpl(io.Platform.isIOS || io.Platform.isMacOS ? DynamicLibrary.executable() : DynamicLibrary.open(_dylib));
+late final Native api = NativeImpl(io.Platform.isIOS || io.Platform.isMacOS
+    ? DynamicLibrary.executable()
+    : DynamicLibrary.open(_dylib));

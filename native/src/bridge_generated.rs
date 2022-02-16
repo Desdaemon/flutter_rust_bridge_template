@@ -3,6 +3,7 @@
     unused,
     clippy::redundant_closure,
     clippy::useless_conversion,
+    clippy::unit_arg,
     non_snake_case
 )]
 // AUTO GENERATED FILE, DO NOT EDIT.
@@ -10,6 +11,8 @@
 
 use crate::api::*;
 use flutter_rust_bridge::*;
+
+// Section: imports
 
 // Section: wire functions
 
@@ -21,13 +24,23 @@ pub extern "C" fn wire_platform(port_: i64) {
             port: Some(port_),
             mode: FfiCallMode::Normal,
         },
-        move || move |task_callback| platform(),
+        move || move |task_callback| Ok(platform()),
+    )
+}
+
+#[no_mangle]
+pub extern "C" fn wire_rust_release_mode(port_: i64) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap(
+        WrapInfo {
+            debug_name: "rust_release_mode",
+            port: Some(port_),
+            mode: FfiCallMode::Normal,
+        },
+        move || move |task_callback| Ok(rust_release_mode()),
     )
 }
 
 // Section: wire structs
-
-// Section: wire enums
 
 // Section: allocate functions
 
@@ -63,6 +76,7 @@ impl<T> NewWithNullPtr for *mut T {
 }
 
 // Section: impl IntoDart
+
 impl support::IntoDart for Platform {
     fn into_dart(self) -> support::DartCObject {
         match self {
@@ -80,6 +94,7 @@ impl support::IntoDart for Platform {
 }
 
 // Section: executor
+
 support::lazy_static! {
     pub static ref FLUTTER_RUST_BRIDGE_HANDLER: support::DefaultHandler = Default::default();
 }
