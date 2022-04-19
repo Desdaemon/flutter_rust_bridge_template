@@ -46,3 +46,6 @@ app.*.map.json
 /android/app/release
 native/target
 jniLibs
+
+Cargo.lock
+pubspec.lock
