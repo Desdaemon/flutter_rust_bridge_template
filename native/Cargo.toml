@@ -11,3 +11,4 @@ crate-type = ["cdylib", "staticlib"]
 [dependencies]
 anyhow = "1"
 flutter_rust_bridge = "1"
+wasm-bindgen = "0.2"

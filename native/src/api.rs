@@ -1,3 +1,6 @@
+use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen]
 pub enum Platform {
     Unknown,
     Android,
@@ -9,6 +12,7 @@ pub enum Platform {
     Wasm,
 }
 
+#[wasm_bindgen]
 pub fn platform() -> Platform {
     if cfg!(windows) {
         Platform::Windows
@@ -29,6 +33,7 @@ pub fn platform() -> Platform {
     }
 }
 
+#[wasm_bindgen]
 pub fn rust_release_mode() -> bool {
     cfg!(not(debug_assertions))
 }

@@ -12,6 +12,7 @@ gen:
     flutter_rust_bridge_codegen {{llvm_path}} \
         --rust-input native/src/api.rs \
         --dart-output lib/bridge_generated.dart \
+        --dart-decl-output lib/bridge_generated.d.dart \
         --c-output ios/Runner/bridge_generated.h
     cp ios/Runner/bridge_generated.h macos/Runner/bridge_generated.h
     # Uncomment this line to invoke build_runner as well
@@ -24,5 +25,10 @@ lint:
 clean:
     flutter clean
     cd native && cargo clean
+
+wasm:
+    cd native && wasm-pack build --target web
+    cp native/pkg/native.js web/
+    cp native/pkg/native_bg.wasm web/
 
 # vim:expandtab:sw=4:ts=4

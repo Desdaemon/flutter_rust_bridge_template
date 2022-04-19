@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ffi.dart';
+import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
 
 void main() {
   runApp(const MyApp());
