@@ -9,10 +9,13 @@ llvm_path := if os() == "macos" {
 default: gen lint
 
 gen:
+    export REPO_DIR="$PWD"
+    cd /
     flutter_rust_bridge_codegen {{llvm_path}} \
-        --rust-input native/src/api.rs \
-        --dart-output lib/bridge_generated.dart \
-        --c-output ios/Runner/bridge_generated.h
+        --rust-input "$REPO_DIR/native/src/api.rs" \
+        --dart-output "$REPO_DIR/lib/bridge_generated.dart" \
+        --c-output "$REPO_DIR/ios/Runner/bridge_generated.h"
+    cd "$REPO_DIR"
     cp ios/Runner/bridge_generated.h macos/Runner/bridge_generated.h
     # Uncomment this line to invoke build_runner as well
     # flutter pub run build_runner build
