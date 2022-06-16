@@ -39,7 +39,7 @@ pub fn platform() -> Platform {
         Platform::Android
     } else if cfg!(target_os = "ios") {
         Platform::Ios
-    } else if cfg!(target_arch = "aarch64-apple-darwin") {
+    } else if cfg!(all(target_os = "macos", target_arch = "aarch64")) {
         Platform::MacApple
     } else if cfg!(target_os = "macos") {
         Platform::MacIntel
