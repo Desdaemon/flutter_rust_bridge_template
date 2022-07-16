@@ -1,11 +1,3 @@
-# Homebrew installs LLVM in a place that is not visible to ffigen.
-# This explicitly specifies the place where the LLVM dylibs are kept.
-llvm_path := if os() == "macos" {
-    "--llvm-path /opt/homebrew/opt/llvm"
-} else {
-    ""
-}
-
 default: gen lint
 
 gen:
@@ -14,8 +6,6 @@ gen:
         --dart-output "$REPO_DIR/lib/bridge_generated.dart" \
         --c-output "$REPO_DIR/ios/Runner/bridge_generated.h" \
         --c-output "$REPO_DIR/macos/Runner/bridge_generated.h"
-    # Uncomment this line to invoke build_runner as well
-    # flutter pub run build_runner build
 
 lint:
     cd native && cargo fmt
