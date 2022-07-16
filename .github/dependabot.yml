@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: pub
+    directory: "/"
+    schedule:
+      interval: weekly
+  - package-ecosystem: cargo
+    directory: "/native"
+    schedule:
+      interval: weekly
