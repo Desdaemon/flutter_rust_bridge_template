@@ -79,6 +79,10 @@ bool _wire2api_bool(dynamic raw) {
   return raw as bool;
 }
 
+int _wire2api_i32(dynamic raw) {
+  return raw as int;
+}
+
 Platform _wire2api_platform(dynamic raw) {
   return Platform.values[raw];
 }
@@ -163,5 +167,5 @@ class NativeWire implements FlutterRustBridgeWireBase {
 }
 
 typedef DartPostCObjectFnType = ffi.Pointer<
-    ffi.NativeFunction<ffi.Uint8 Function(DartPort, ffi.Pointer<ffi.Void>)>>;
+    ffi.NativeFunction<ffi.Bool Function(DartPort, ffi.Pointer<ffi.Void>)>>;
 typedef DartPort = ffi.Int64;
