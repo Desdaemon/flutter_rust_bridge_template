@@ -1,0 +1,14 @@
+name: Issues Cleanup
+on:
+  schedule:
+    - cron: '* 18 * * *'
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  cleanup:
+    name: Close Stale Issues
+    steps:
+      - uses: actions/stale@v5.1.0
