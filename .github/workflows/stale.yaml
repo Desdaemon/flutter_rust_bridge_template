@@ -1,7 +1,7 @@
 name: Issues Cleanup
 on:
   schedule:
-    - cron: '* 18 * * *'
+    - cron: '0 18 * * *'
 
 permissions:
   issues: write
@@ -10,5 +10,6 @@ permissions:
 jobs:
   cleanup:
     name: Close Stale Issues
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/stale@v5.1.0
