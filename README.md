@@ -22,3 +22,9 @@ echo "ANDROID_NDK=.." >> ~/.gradle/gradle.properties
 Then go ahead and run `flutter run`! When you're ready, refer to our documentation
 [here](https://fzyzcjy.github.io/flutter_rust_bridge/index.html)
 to learn how to write and use binding code.
+
+## Scaffolding in existing projects
+
+If you would like to generate boilerplate for using `flutter_rust_bridge` in your existing projects,
+check out the [`flutter_rust_bridge` brick](https://brickhub.dev/bricks/flutter_rust_bridge/)
+for more details.
