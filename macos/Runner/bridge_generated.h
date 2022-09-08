@@ -2,23 +2,23 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+typedef int64_t DartPort;
+
+typedef bool (*DartPostCObjectFnType)(DartPort port_id, void *message);
+
 typedef struct WireSyncReturnStruct {
   uint8_t *ptr;
   int32_t len;
   bool success;
 } WireSyncReturnStruct;
 
-typedef int64_t DartPort;
-
-typedef bool (*DartPostCObjectFnType)(DartPort port_id, void *message);
+void store_dart_post_cobject(DartPostCObjectFnType ptr);
 
 void wire_platform(int64_t port_);
 
 void wire_rust_release_mode(int64_t port_);
 
 void free_WireSyncReturnStruct(struct WireSyncReturnStruct val);
-
-void store_dart_post_cobject(DartPostCObjectFnType ptr);
 
 static int64_t dummy_method_to_enforce_bundling(void) {
     int64_t dummy_var = 0;
