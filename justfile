@@ -1,6 +1,7 @@
 default: gen lint
 
 gen:
+    flutter pub get
     flutter_rust_bridge_codegen \
         --rust-input native/src/api.rs \
         --dart-output lib/bridge_generated.dart \
