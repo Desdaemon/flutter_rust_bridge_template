@@ -26,7 +26,7 @@
 		33CC10F32044A3C60003C045 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33CC10F22044A3C60003C045 /* Assets.xcassets */; };
 		33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CC10F42044A3C60003C045 /* MainMenu.xib */; };
 		33CC11132044BFA00003C045 /* MainFlutterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC11122044BFA00003C045 /* MainFlutterWindow.swift */; };
-		A35253562866B2A900EFD9C6 /* native.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A35253532866B29F00EFD9C6 /* native.dylib */; };
+		A35276BC28E9D06A001BF1C9 /* libnative_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A35276B428E9CFDB001BF1C9 /* libnative_static.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,25 +37,25 @@
 			remoteGlobalIDString = 33CC111A2044C6BA0003C045;
 			remoteInfo = FLX;
 		};
-		A352534E2866B29F00EFD9C6 /* PBXContainerItemProxy */ = {
+		A35276B128E9CFDB001BF1C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A352534B2866B29F00EFD9C6 /* native.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CA603EE7FF4DCCA7472EC19F;
-			remoteInfo = "native-cdylib";
-		};
-		A35253522866B29F00EFD9C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A352534B2866B29F00EFD9C6 /* native.xcodeproj */;
+			containerPortal = A35276AC28E9CFDB001BF1C9 /* native.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CA603EE7FF4DEAC3B2E0A336;
 			remoteInfo = "native-cdylib";
 		};
-		A35253542866B29F00EFD9C6 /* PBXContainerItemProxy */ = {
+		A35276B328E9CFDB001BF1C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A352534B2866B29F00EFD9C6 /* native.xcodeproj */;
+			containerPortal = A35276AC28E9CFDB001BF1C9 /* native.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CA60F0FEBE702969E816930C;
+			remoteInfo = "native-staticlib";
+		};
+		A35276BA28E9D060001BF1C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A35276AC28E9CFDB001BF1C9 /* native.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CA60F0FEBE701C83950DBC35;
 			remoteInfo = "native-staticlib";
 		};
 /* End PBXContainerItemProxy section */
@@ -90,9 +90,8 @@
 		33E5194F232828860026EE4D /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
-		A35253422866B29000EFD9C6 /* native.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = native.xcodeproj; path = ../../native/native.xcodeproj; sourceTree = "<group>"; };
-		A352534B2866B29F00EFD9C6 /* native.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = native.xcodeproj; path = /Users/vdinh/dev/flutter_rust_bridge_template/native/native.xcodeproj; sourceTree = "<absolute>"; };
 		A35253572866B2C900EFD9C6 /* bridge_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridge_generated.h; sourceTree = "<group>"; };
+		A35276AC28E9CFDB001BF1C9 /* native.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = native.xcodeproj; path = ../native/native.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A35253562866B2A900EFD9C6 /* native.dylib in Frameworks */,
+				A35276BC28E9D06A001BF1C9 /* libnative_static.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,11 +120,11 @@
 		33CC10E42044A3C60003C045 = {
 			isa = PBXGroup;
 			children = (
+				A35276AC28E9CFDB001BF1C9 /* native.xcodeproj */,
 				33FAB671232836740065AC1E /* Runner */,
 				33CEB47122A05771004F2AC0 /* Flutter */,
 				33CC10EE2044A3C60003C045 /* Products */,
 				D73912EC22F37F3D000D13A0 /* Frameworks */,
-				A352534B2866B29F00EFD9C6 /* native.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				A35253572866B2C900EFD9C6 /* bridge_generated.h */,
-				A35253422866B29000EFD9C6 /* native.xcodeproj */,
 				33CC10F02044A3C60003C045 /* AppDelegate.swift */,
 				33CC11122044BFA00003C045 /* MainFlutterWindow.swift */,
 				33E51913231747F40026EE4D /* DebugProfile.entitlements */,
@@ -174,11 +172,11 @@
 			path = Runner;
 			sourceTree = "<group>";
 		};
-		A352534C2866B29F00EFD9C6 /* Products */ = {
+		A35276AD28E9CFDB001BF1C9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A35253532866B29F00EFD9C6 /* native.dylib */,
-				A35253552866B29F00EFD9C6 /* libnative_static.a */,
+				A35276B228E9CFDB001BF1C9 /* native.dylib */,
+				A35276B428E9CFDB001BF1C9 /* libnative_static.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,7 +204,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				A352534F2866B29F00EFD9C6 /* PBXTargetDependency */,
+				A35276BB28E9D060001BF1C9 /* PBXTargetDependency */,
 				33CC11202044C79F0003C045 /* PBXTargetDependency */,
 			);
 			name = Runner;
@@ -253,8 +251,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = A352534C2866B29F00EFD9C6 /* Products */;
-					ProjectRef = A352534B2866B29F00EFD9C6 /* native.xcodeproj */;
+					ProductGroup = A35276AD28E9CFDB001BF1C9 /* Products */;
+					ProjectRef = A35276AC28E9CFDB001BF1C9 /* native.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -266,18 +264,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		A35253532866B29F00EFD9C6 /* native.dylib */ = {
+		A35276B228E9CFDB001BF1C9 /* native.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = native.dylib;
-			remoteRef = A35253522866B29F00EFD9C6 /* PBXContainerItemProxy */;
+			remoteRef = A35276B128E9CFDB001BF1C9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A35253552866B29F00EFD9C6 /* libnative_static.a */ = {
+		A35276B428E9CFDB001BF1C9 /* libnative_static.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libnative_static.a;
-			remoteRef = A35253542866B29F00EFD9C6 /* PBXContainerItemProxy */;
+			remoteRef = A35276B328E9CFDB001BF1C9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -353,10 +351,10 @@
 			target = 33CC111A2044C6BA0003C045 /* Flutter Assemble */;
 			targetProxy = 33CC111F2044C79F0003C045 /* PBXContainerItemProxy */;
 		};
-		A352534F2866B29F00EFD9C6 /* PBXTargetDependency */ = {
+		A35276BB28E9D060001BF1C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "native-cdylib";
-			targetProxy = A352534E2866B29F00EFD9C6 /* PBXContainerItemProxy */;
+			name = "native-staticlib";
+			targetProxy = A35276BA28E9D060001BF1C9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
