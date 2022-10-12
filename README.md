@@ -23,6 +23,18 @@ Then go ahead and run `flutter run`! When you're ready, refer to our documentati
 [here](https://fzyzcjy.github.io/flutter_rust_bridge/index.html)
 to learn how to write and use binding code.
 
+Once you have edited `api.rs` to incorporate your own Rust code, the bridge files `bridge_definitions.dart` and `bridge_generated.dart` are generated using the following command:
+
+### Windows
+```
+flutter_rust_bridge_codegen --rust-input native\src\api.rs --dart-output .\lib\bridge_generated.dart --dart-decl-output .\lib\bridge_definitions.dart
+```
+
+### Linux/MacOS/any other Unix
+```
+flutter_rust_bridge_codegen --rust-input native/src/api.rs --dart-output ./lib/bridge_generated.dart --dart-decl-output ./lib/bridge_definitions.dart
+```
+
 ## Scaffolding in existing projects
 
 If you would like to generate boilerplate for using `flutter_rust_bridge` in your existing projects,
