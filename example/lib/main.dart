@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rust_bridge_template/ffi.dart';
+import 'package:flutter_rust_bridge_template/flutter_rust_bridge_template.dart';
 
 void main() {
   runApp(const MyApp());

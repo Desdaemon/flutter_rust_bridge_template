@@ -4,10 +4,10 @@ gen:
     flutter pub get
     flutter_rust_bridge_codegen \
         --rust-input native/src/api.rs \
-        --dart-output lib/bridge_generated.dart \
+        --dart-output lib/src/bridge_generated.dart \
         --c-output ios/Runner/bridge_generated.h \
         --c-output macos/Runner/bridge_generated.h \
-        --dart-decl-output lib/bridge_definitions.dart \
+        --dart-decl-output lib/src/bridge_definitions.dart \
         --wasm
 
 build:
