@@ -1,4 +1,4 @@
-default: gen lint
+default: gen build lint
 
 gen:
     flutter pub get
@@ -9,6 +9,9 @@ gen:
         --c-output macos/Runner/bridge_generated.h \
         --dart-decl-output lib/bridge_definitions.dart \
         --wasm
+
+build:
+    ./script/build_android.sh
 
 lint:
     cd native && cargo fmt
