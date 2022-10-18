@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# This script builds the native library for Android.
 # You must have a define $ANDROID_NDK_HOME environment variable.
 
 build() {
