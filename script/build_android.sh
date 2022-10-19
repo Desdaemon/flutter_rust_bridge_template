@@ -5,7 +5,7 @@
 
 build() {
     echo "Building android libs"
-    `cd native/ && cargo ndk -t armeabi-v7a -t arm64-v8a -o ../android/libs build && cd ..;`
+    `cd native/ && cargo ndk -t armeabi-v7a -t arm64-v8a -o ../android/libs build --release && cd ..;`
 }
 
 build
