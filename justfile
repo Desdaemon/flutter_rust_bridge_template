@@ -7,8 +7,7 @@ gen:
         --dart-output lib/src/bridge_generated.dart \
         --c-output ios/Classes/bridge_generated.h \
         --c-output macos/Classes/bridge_generated.h \
-        --dart-decl-output lib/src/bridge_definitions.dart \
-        --wasm
+        --dart-decl-output lib/src/bridge_definitions.dart
 
 build:
     ./script/build_android.sh
