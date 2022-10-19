@@ -86,11 +86,13 @@ dependencies {
         workingDir "../../native"
         environment ANDROID_NDK_HOME: "$ANDROID_NDK"
         commandLine 'cargo', 'ndk',
-            //    Uncomment to enable these ABIs as required.
-            //    '-t', 'x86',
-            //    '-t', 'x86_64',
+                // the below 2 ABIs are used for target Android devices
                 '-t', 'armeabi-v7a',
                 '-t', 'arm64-v8a',
+                // the below 2 ABIs are usually used for Android simulators,
+                // comment these ABIs as required.
+                '-t', 'x86',
+                '-t', 'x86_64',
                 '-o', '../android/app/src/main/jniLibs', 'build'
         if (profileMode != null) {
             args profileMode
