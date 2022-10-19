@@ -55,6 +55,7 @@ Once you have edited `api.rs` to incorporate your own Rust code, the bridge file
 
 If you have already install `just`, you can just run `just` command line and it will build everythings for you. You can check the detail of what the `just` command does in the `justfile`. To run a specific task, use `just <taskname>` 
 
+
 ## Scaffolding in existing projects
 
 If you would like to generate boilerplate for using `flutter_rust_bridge` in your existing projects,
