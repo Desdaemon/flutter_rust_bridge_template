@@ -10,12 +10,16 @@ To begin, ensure that you have a working installation of the following items:
 - [Rust language](https://rustup.rs/)
 - Appropriate [Rust targets](https://rust-lang.github.io/rustup/cross-compilation.html) for cross-compiling to your device
 - For Android targets:
+    - Install [cargo-ndk](https://github.com/bbqsrc/cargo-ndk#installing)
     - Install Android NDK 22, then put its path in one of the `gradle.properties`, e.g.:
-    - You also might need to have an env variable named `ANDROID_NDK_HOME` who point to your NDK location
 
 ```
 echo "ANDROID_NDK=.." >> ~/.gradle/gradle.properties
 ```
+
+This template use [just](https://github.com/casey/just) to get things done. You should download it.
+
+It also use [flutter_rust_bridge_codegen](https://github.com/fzyzcjy/flutter_rust_bridge), so you should have it install on your machine. You can install it with `cargo install flutter_rust_bridge_codegen`
 
 You also need to make sure that you have [llvm](https://releases.llvm.org/download.html) install.
 
@@ -38,8 +42,6 @@ winget install -e --id LLVM.LLVM
 ```
 brew install llvm
 ```
-
-Once this is done, you install install extra dependencies with the script located in `script/install_dev_en`
 
 - [Web dependencies](http://cjycode.com/flutter_rust_bridge/template/setup_web.html) for the Web
 

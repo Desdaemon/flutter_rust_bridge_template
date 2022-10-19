@@ -14,7 +14,6 @@ build:
     ./script/build_android.sh
     ./script/build_ios.sh
     ./script/build_macos.sh
-    ./script/build_windows.sh
 
 lint:
     cd native && cargo fmt
