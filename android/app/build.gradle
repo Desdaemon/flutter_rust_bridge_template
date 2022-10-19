@@ -86,7 +86,7 @@ dependencies {
         workingDir "../../native"
         environment ANDROID_NDK_HOME: "$ANDROID_NDK"
         commandLine 'cargo', 'ndk',
-                // the below 2 ABIs are used for target Android devices
+                // the 2 ABIs below are used by real Android devices
                 '-t', 'armeabi-v7a',
                 '-t', 'arm64-v8a',
                 // the below 2 ABIs are usually used for Android simulators,
