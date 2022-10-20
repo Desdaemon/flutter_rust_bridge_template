@@ -2,6 +2,8 @@ name: flutter_rust_bridge_template
 description: A new Flutter/Rust ffi plugin
 version: 0.0.1
 homepage:
+repository:
+issue_tracker:
 
 environment:
   sdk: ">=2.17.5 <3.0.0"

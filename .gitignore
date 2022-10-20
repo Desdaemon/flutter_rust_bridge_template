@@ -49,3 +49,8 @@ jniLibs
 Cargo.lock
 pubspec.lock
 xcuserdata
+
+ios/Flutter/
+ios/Runner/
+macos/Flutter/
+macos/Runner/

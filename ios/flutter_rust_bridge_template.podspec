@@ -22,12 +22,6 @@ A new Flutter FFI plugin project.
   s.dependency 'Flutter'
   s.platform = :ios, '9.0'
 
-  # Flutter.framework does not contain a i386 slice.
-  s.pod_target_xcconfig = {
-    'DEFINES_MODULE' => 'YES',
-    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386',
-    'OTHER_LDFLAGS[sdk=iphoneos*]' => '-force_load $(PODS_TARGET_SRCROOT)/libs/aarch64-apple-ios/libnative.a',
-    'OTHER_LDFLAGS[sdk=iphonesimulator*]' => '-force_load $(PODS_TARGET_SRCROOT)/libs/aarch64-apple-ios-sim/libnative.a'
-  }
+  s.vendored_frameworks = 'native.xcframework'
   s.swift_version = '5.0'
 end

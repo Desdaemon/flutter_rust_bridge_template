@@ -14,7 +14,7 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral
 
 SPEC CHECKSUMS:
-  flutter_rust_bridge_template: 7cdff2c96f89cc3281e68dec614ea046ff493933
+  flutter_rust_bridge_template: e2f9f1637d548de905c6c3155b10ef8de6a5c785
   FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
 
 PODFILE CHECKSUM: 6eac6b3292e5142cfc23bdeb71848a40ec51c14c

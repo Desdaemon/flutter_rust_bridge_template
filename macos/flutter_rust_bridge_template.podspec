@@ -25,6 +25,6 @@ Pod::Spec.new do |s|
     s.swift_version = '5.0'
 
     # use the universal binary created by the lipo command
-    s.vendored_libraries = 'libs/libnative.a'
+    s.vendored_libraries = 'libs/libnative.dylib'
   end
   
