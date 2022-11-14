@@ -17,6 +17,32 @@ To begin, ensure that you have a working installation of the following items:
 echo "ANDROID_NDK=.." >> ~/.gradle/gradle.properties
 ```
 
+This template use [just](https://github.com/casey/just) to get things done. You should download it.
+
+It also use [flutter_rust_bridge_codegen](https://github.com/fzyzcjy/flutter_rust_bridge), so you should have it install on your machine. You can install it with `cargo install flutter_rust_bridge_codegen`
+
+You also need to make sure that you have [llvm](https://releases.llvm.org/download.html) install.
+
+You can install it as follow:
+
+- ubuntu/linux
+
+```
+sudo apt-get install libclang-dev
+```
+
+- Windows
+
+```
+winget install -e --id LLVM.LLVM
+```
+
+- MacOs
+
+```
+brew install llvm
+```
+
 - [Web dependencies](http://cjycode.com/flutter_rust_bridge/template/setup_web.html) for the Web
 
 Then go ahead and run `flutter run`! When you're ready, refer to our documentation
@@ -25,15 +51,10 @@ to learn how to write and use binding code.
 
 Once you have edited `api.rs` to incorporate your own Rust code, the bridge files `bridge_definitions.dart` and `bridge_generated.dart` are generated using the following command:
 
-### Windows
-```
-flutter_rust_bridge_codegen --rust-input native\src\api.rs --dart-output .\lib\bridge_generated.dart --dart-decl-output .\lib\bridge_definitions.dart
-```
+### Generate
 
-### Linux/MacOS/any other Unix
-```
-flutter_rust_bridge_codegen --rust-input native/src/api.rs --dart-output ./lib/bridge_generated.dart --dart-decl-output ./lib/bridge_definitions.dart
-```
+If you have already install `just`, you can just run `just` command line and it will build everythings for you. You can check the detail of what the `just` command does in the `justfile`. To run a specific task, use `just <taskname>` 
+
 
 ## Scaffolding in existing projects
 
