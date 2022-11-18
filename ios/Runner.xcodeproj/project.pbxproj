@@ -13,27 +13,19 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
-		A35253402866B1BF00EFD9C6 /* libnative_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A352533E2866B1B100EFD9C6 /* libnative_static.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A35253372866B1B000EFD9C6 /* PBXContainerItemProxy */ = {
+		A309F0B92927FD3600259411 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A35253342866B1B000EFD9C6 /* native.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CA60F0FEBE701C83950DBC35;
-			remoteInfo = "native-staticlib";
-		};
-		A352533B2866B1B100EFD9C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A35253342866B1B000EFD9C6 /* native.xcodeproj */;
+			containerPortal = A35253292866B17200EFD9C6 /* native.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CA603EE7FF4DEAC3B2E0A336;
 			remoteInfo = "native-cdylib";
 		};
-		A352533D2866B1B100EFD9C6 /* PBXContainerItemProxy */ = {
+		A309F0BB2927FD3600259411 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A35253342866B1B000EFD9C6 /* native.xcodeproj */;
+			containerPortal = A35253292866B17200EFD9C6 /* native.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CA60F0FEBE702969E816930C;
 			remoteInfo = "native-staticlib";
@@ -68,7 +60,7 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A35253292866B17200EFD9C6 /* native.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = native.xcodeproj; path = ../../native/native.xcodeproj; sourceTree = "<group>"; };
-		A35253342866B1B000EFD9C6 /* native.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = native.xcodeproj; path = /Users/vdinh/dev/flutter_rust_bridge_template/native/native.xcodeproj; sourceTree = "<absolute>"; };
+		A35253342866B1B000EFD9C6 /* native.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = native.xcodeproj; path = ../native/native.xcodeproj; sourceTree = "<group>"; };
 		A35253412866B24600EFD9C6 /* bridge_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridge_generated.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,7 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A35253402866B1BF00EFD9C6 /* libnative_static.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,11 +122,11 @@
 			path = Runner;
 			sourceTree = "<group>";
 		};
-		A35253352866B1B000EFD9C6 /* Products */ = {
+		A309F0B42927FD3300259411 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A352533C2866B1B100EFD9C6 /* native.dylib */,
-				A352533E2866B1B100EFD9C6 /* libnative_static.a */,
+				A309F0BA2927FD3600259411 /* native.dylib */,
+				A309F0BC2927FD3600259411 /* libnative_static.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,7 +155,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A35253382866B1B000EFD9C6 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			productName = Runner;
@@ -199,8 +189,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = A35253352866B1B000EFD9C6 /* Products */;
-					ProjectRef = A35253342866B1B000EFD9C6 /* native.xcodeproj */;
+					ProductGroup = A309F0B42927FD3300259411 /* Products */;
+					ProjectRef = A35253292866B17200EFD9C6 /* native.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -211,18 +201,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		A352533C2866B1B100EFD9C6 /* native.dylib */ = {
+		A309F0BA2927FD3600259411 /* native.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = native.dylib;
-			remoteRef = A352533B2866B1B100EFD9C6 /* PBXContainerItemProxy */;
+			remoteRef = A309F0B92927FD3600259411 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A352533E2866B1B100EFD9C6 /* libnative_static.a */ = {
+		A309F0BC2927FD3600259411 /* libnative_static.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libnative_static.a;
-			remoteRef = A352533D2866B1B100EFD9C6 /* PBXContainerItemProxy */;
+			remoteRef = A309F0BB2927FD3600259411 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -283,14 +273,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A35253382866B1B000EFD9C6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "native-staticlib";
-			targetProxy = A35253372866B1B000EFD9C6 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		97C146FA1CF9000F007C117D /* Main.storyboard */ = {
@@ -353,7 +335,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
@@ -430,7 +412,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -479,7 +461,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
