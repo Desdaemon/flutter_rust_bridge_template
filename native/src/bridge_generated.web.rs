@@ -13,6 +13,8 @@ pub fn wire_rust_release_mode(port_: MessagePort) {
 
 // Section: allocate functions
 
+// Section: related functions
+
 // Section: impl Wire2Api
 
 // Section: impl Wire2Api for JsValue
