@@ -13,3 +13,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/stale@v5.1.0
+        with:
+          days-before-stale: 14
