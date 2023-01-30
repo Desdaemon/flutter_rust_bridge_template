@@ -41,6 +41,11 @@ If you would like to generate boilerplate for using `flutter_rust_bridge` in you
 check out the [`flutter_rust_bridge` brick](https://brickhub.dev/bricks/flutter_rust_bridge/)
 for more details.
 
+## Disclaimer
+
+This template is not affiliated with flutter_rust_bridge. Please file issues and PRs related to the template here,
+not flutter_rust_bridge.
+
 ## License
 
 Copyright 2022 Viet Dinh.
