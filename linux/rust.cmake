@@ -14,12 +14,8 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Corrosion)
 
-corrosion_import_crate(MANIFEST_PATH ../native/Cargo.toml)
-
-# Flutter-specific
-
-set(CRATE_NAME "native")
-
-target_link_libraries(${BINARY_NAME} PRIVATE ${CRATE_NAME})
-
-list(APPEND PLUGIN_BUNDLED_LIBRARIES $<TARGET_FILE:${CRATE_NAME}-shared>)
+corrosion_import_crate(MANIFEST_PATH ../native/Cargo.toml IMPORTED_CRATES imported_crates)
+target_link_libraries(${BINARY_NAME} PRIVATE ${imported_crates})
+foreach(imported_crate ${imported_crates})
+  list(APPEND PLUGIN_BUNDLED_LIBRARIES $<TARGET_FILE:${imported_crate}-shared>)
+endforeach()
