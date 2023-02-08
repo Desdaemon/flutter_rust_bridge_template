@@ -17,6 +17,7 @@ To begin, ensure that you have a working installation of the following items:
 ```
 echo "ANDROID_NDK=.." >> ~/.gradle/gradle.properties
 ```
+
 - For iOS targets:
   - Install [cargo-xcode](https://gitlab.com/kornelski/cargo-xcode#installation)
 - [Web dependencies](http://cjycode.com/flutter_rust_bridge/template/setup_web.html) for the Web
