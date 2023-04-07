@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // List<dynamic>.
               future: Future.wait([platform, isRelease]),
               builder: (context, snap) {
-                final style = Theme.of(context).textTheme.headline4;
+                final style = Theme.of(context).textTheme.headlineMedium;
                 if (snap.error != null) {
                   // An error has been encountered, so give an appropriate response and
                   // pass the error details to an unobstructive tooltip.
