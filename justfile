@@ -9,7 +9,6 @@ gen:
         --extra-c-output-path macos/Runner/ \
         --dart-decl-output lib/bridge_definitions.dart \
         --wasm
-    cp ios/Runner/bridge_generated.h macos/Runner/bridge_generated.h
 
 lint:
     cd native && cargo fmt
