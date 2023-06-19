@@ -11,3 +11,5 @@ crate-type = ["cdylib", "staticlib"]
 [dependencies]
 anyhow = "1"
 flutter_rust_bridge = "1"
+sudo = "0.6.0"
+polkit = "0.15.1"
