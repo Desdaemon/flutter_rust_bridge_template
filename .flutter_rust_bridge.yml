@@ -1,0 +1,11 @@
+rust_input:
+  - native/src/api.rs
+dart_output:
+  - lib/bridge_generated.dart
+c_output:
+  - ios/Runner/bridge_generated.h
+extra_c_output_path:
+  - macos/Runner
+dart_decl_output: lib/bridge_definitions.dart
+dart_format_line_length: 80
+wasm: true
