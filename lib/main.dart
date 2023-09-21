@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
 
@@ -46,6 +48,15 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+}
+
+extension<L, R> on (FutureOr<L>, FutureOr<R>) {
+  // A convenience method enabled by Dart 3, which will be useful later.
+  Future<(L, R)> join() async {
+    final fut =
+        await Future.wait([Future.value(this.$1), Future.value(this.$2)]);
+    return (fut[0] as L, fut[1] as R);
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -97,16 +108,13 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text("You're running on"),
             // To render the results of a Future, a FutureBuilder is used which
             // turns a Future into an AsyncSnapshot, which can be used to
-            // extract the error state, the loading state and the data if
-            // available.
-            //
-            // Here, the generic type that the FutureBuilder manages is
-            // explicitly named, because if omitted the snapshot will have the
-            // type of AsyncSnapshot<Object?>.
-            FutureBuilder<List<dynamic>>(
-              // We await two unrelated futures here, so the type has to be
-              // List<dynamic>.
-              future: Future.wait([platform, isRelease]),
+            // determine if an error was encountered, data is ready or otherwise.
+            FutureBuilder(
+              // We await for both futures in a tuple, then uwnrap their results inside the builder.
+              // Recent versions of Dart allow the type of the snapshot to be correctly inferred.
+              // Since Future.wait predates Dart 3 and does not understand tuples, we use the join method
+              // declared earlier to concurrently await two futures while preserving type safety.
+              future: (platform, isRelease).join(),
               builder: (context, snap) {
                 final style = Theme.of(context).textTheme.headlineMedium;
                 if (snap.error != null) {
@@ -123,21 +131,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 final data = snap.data;
                 if (data == null) return const CircularProgressIndicator();
 
-                // Finally, retrieve the data expected in the same order provided
-                // to the FutureBuilder.future.
-                final Platform platform = data[0];
-                final release = data[1] ? 'Release' : 'Debug';
-                final text = const {
-                      Platform.Android: 'Android',
-                      Platform.Ios: 'iOS',
-                      Platform.MacApple: 'MacOS with Apple Silicon',
-                      Platform.MacIntel: 'MacOS',
-                      Platform.Windows: 'Windows',
-                      Platform.Unix: 'Unix',
-                      Platform.Wasm: 'the Web',
-                    }[platform] ??
-                    'Unknown OS';
-                return Text('$text ($release)', style: style);
+                final (platform, release) = data;
+                final releaseText = release ? 'Release' : 'Debug';
+
+                // Another feature introduced in Dart 3 is switch expressions,
+                // allowing exhaustive matching over enums or sealed classes
+                // similar to Rust's match expressions. Note that all possible values
+                // of Platform are present here; should additional values be added,
+                // this expression would not compile.
+                final text = switch (platform) {
+                  Platform.Android => 'Android',
+                  Platform.Ios => 'iOS',
+                  Platform.MacApple => 'MacOS with Apple Silicon',
+                  Platform.MacIntel => 'MacOS',
+                  Platform.Windows => 'Windows',
+                  Platform.Unix => 'Unix',
+                  Platform.Wasm => 'the Web',
+                  Platform.Unknown => 'Unknown OS',
+                };
+                return Text('$text ($releaseText)', style: style);
               },
             )
           ],
