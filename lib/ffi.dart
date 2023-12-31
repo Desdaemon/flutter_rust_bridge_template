@@ -13,6 +13,7 @@ export 'bridge_generated.dart';
 
 const _base = 'native';
 // Use for Darwin framework lookup under the DEBUG mode.
+// The value must be equal to the package name defined in pubspec.yaml.
 const _package = 'native';
 
 // On MacOS, the dynamic library is not bundled with the binary,
