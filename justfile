@@ -15,4 +15,9 @@ clean:
 serve *args='':
     flutter pub run flutter_rust_bridge:serve {{args}}
 
+build-web href='/':
+    cd native && wasm-pack build \
+        --no-pack --release --no-typescript -t no-modules -d ../web/pkg
+    flutter build web --base-href={{href}}
+
 # vim:expandtab:sw=4:ts=4
