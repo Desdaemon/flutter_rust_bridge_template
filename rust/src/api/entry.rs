@@ -2,6 +2,8 @@
 // When adding new code to your project, note that only items used
 // here will be transformed to their Dart equivalents.
 
+use flutter_rust_bridge::frb;
+
 // A plain enum without any fields. This is similar to Dart- or C-style enums.
 // flutter_rust_bridge is capable of generating code for enums with fields
 // (@freezed classes in Dart and tagged unions in C).
@@ -18,6 +20,10 @@ pub enum Platform {
 
 // A function definition in Rust. Similar to Dart, the return type must always be named
 // and is never inferred.
+//
+// The attribute #[frb(sync)] denotes that this function runs on the main Dart thread,
+// which is suitable for simple, non-demanding operations.
+#[frb(sync)]
 pub fn platform() -> Platform {
     // This is a macro, a special expression that expands into code. In Rust, all macros
     // end with an exclamation mark and can be invoked with all kinds of brackets (parentheses,
@@ -54,6 +60,7 @@ pub fn platform() -> Platform {
 
 // The convention for Rust identifiers is the snake_case,
 // and they are automatically converted to camelCase on the Dart side.
+#[frb(sync)]
 pub fn rust_release_mode() -> bool {
     cfg!(not(debug_assertions))
 }

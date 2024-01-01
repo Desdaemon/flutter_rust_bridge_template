@@ -35,7 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   ffi: ^2.0.1
-  flutter_rust_bridge: ^1.45.0
+  flutter_rust_bridge: 2.0.0-dev.9
   meta: ^1.8.0
   uuid: ^4.1.0
 
@@ -49,7 +49,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
-  ffigen: ^10.0.0
+  ffigen: '>=8.0.0 <10.0.0'
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

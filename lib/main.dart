@@ -1,21 +1,19 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
+import 'ffi.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
+      theme: ThemeData.from(
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -25,7 +23,16 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue),
+      ),
+      // If you use night mode on your device by default, try changing the settings
+      // here as well and see how it changes after reloads. You can press "b" in the
+      // console to force a specific brightness mode.
+      darkTheme: ThemeData.from(
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.blueGrey,
+          brightness: Brightness.dark,
+        ),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -33,7 +40,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -50,28 +57,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-extension<L, R> on (FutureOr<L>, FutureOr<R>) {
-  // A convenience method enabled by Dart 3, which will be useful later.
-  Future<(L, R)> join() async {
-    final fut =
-        await Future.wait([Future.value(this.$1), Future.value(this.$2)]);
-    return (fut[0] as L, fut[1] as R);
-  }
-}
-
 class _MyHomePageState extends State<MyHomePage> {
-  // These futures belong to the state and are only initialized once,
-  // in the initState method.
-  late Future<Platform> platform;
-  late Future<bool> isRelease;
-
-  @override
-  void initState() {
-    super.initState();
-    platform = api.platform();
-    isRelease = api.rustReleaseMode();
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called.
@@ -110,11 +96,10 @@ class _MyHomePageState extends State<MyHomePage> {
             // turns a Future into an AsyncSnapshot, which can be used to
             // determine if an error was encountered, data is ready or otherwise.
             FutureBuilder(
-              // We await for both futures in a tuple, then uwnrap their results inside the builder.
-              // Recent versions of Dart allow the type of the snapshot to be correctly inferred.
-              // Since Future.wait predates Dart 3 and does not understand tuples, we use the join method
-              // declared earlier to concurrently await two futures while preserving type safety.
-              future: (platform, isRelease).join(),
+              // While we usually pass a Future<T> to this parameter in order to extract T,
+              // in this case we are just using the FutureBuilder
+              // to wait for bridge initialization to complete.
+              future: initialized,
               builder: (context, snap) {
                 final style = Theme.of(context).textTheme.headlineMedium;
                 if (snap.error != null) {
@@ -127,27 +112,26 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 }
 
-                // Guard return here, the data is not ready yet.
-                final data = snap.data;
-                if (data == null) return const CircularProgressIndicator();
+                if (snap.connectionState != ConnectionState.done) {
+                  return const CircularProgressIndicator();
+                }
 
-                final (platform, release) = data;
-                final releaseText = release ? 'Release' : 'Debug';
+                final releaseText = rustReleaseMode() ? 'Release' : 'Debug';
 
                 // Another feature introduced in Dart 3 is switch expressions,
                 // allowing exhaustive matching over enums or sealed classes
                 // similar to Rust's match expressions. Note that all possible values
                 // of Platform are present here; should additional values be added,
                 // this expression would not compile.
-                final text = switch (platform) {
-                  Platform.Android => 'Android',
-                  Platform.Ios => 'iOS',
-                  Platform.MacApple => 'MacOS with Apple Silicon',
-                  Platform.MacIntel => 'MacOS',
-                  Platform.Windows => 'Windows',
-                  Platform.Unix => 'Unix',
-                  Platform.Wasm => 'the Web',
-                  Platform.Unknown => 'Unknown OS',
+                final text = switch (platform()) {
+                  Platform.android => 'Android',
+                  Platform.ios => 'iOS',
+                  Platform.macApple => 'MacOS with Apple Silicon',
+                  Platform.macIntel => 'MacOS',
+                  Platform.windows => 'Windows',
+                  Platform.unix => 'Unix',
+                  Platform.wasm => 'the Web',
+                  Platform.unknown => 'Unknown OS',
                 };
                 return Text('$text ($releaseText)', style: style);
               },

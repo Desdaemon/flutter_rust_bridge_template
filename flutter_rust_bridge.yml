@@ -1,0 +1,7 @@
+rust_input: rust/src/api/**/*.rs
+rust_output: rust/src/bridge.rs
+dart_output: lib
+c_output: ios/Runner/bridge.h
+duplicated_c_output:
+  - macos/Runner/bridge.h
+dart_format_line_length: 80

@@ -1,23 +1,26 @@
+set windows-powershell
+native := "rust"
+release := "true"
+in_rust := "--manifest-path " + native + "/Cargo.toml"
+
 default: gen lint
 
 gen:
     flutter pub get
-    flutter_rust_bridge_codegen
+    flutter_rust_bridge_codegen generate
 
 lint:
-    cd native && cargo fmt
+    cargo fmt {{in_rust}}
     dart format .
 
 clean:
     flutter clean
-    cd native && cargo clean
+    cargo clean {{in_rust}}
     
-serve *args='':
-    flutter pub run flutter_rust_bridge:serve {{args}}
-
 build-web href='/':
-    cd native && wasm-pack build \
-        --no-pack --release --no-typescript -t no-modules -d ../web/pkg
+    wasm-pack build {{native}} \
+        --no-pack {{ if release == "true" { "--release" } else { "" } }} \
+        --no-typescript -t no-modules -d ../web/pkg
     flutter build web --base-href={{href}}
 
 # vim:expandtab:sw=4:ts=4
