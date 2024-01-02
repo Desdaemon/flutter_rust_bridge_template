@@ -11,17 +11,20 @@ import 'bridge_definitions.dart';
 export 'bridge_definitions.dart';
 export 'bridge_generated.dart';
 
-const _base = 'native';
+const _libName = 'native';
 // Use for Darwin framework lookup under the DEBUG mode.
+// Use an explicit package constant to avoid
+// if the library name and the package name are not the same.
 // The value must be equal to the package name defined in pubspec.yaml.
 const _package = 'native';
 
-// On MacOS, the dynamic library is not bundled with the binary,
-// but rather directly **linked** against the binary.
-final _dylib = io.Platform.isWindows ? '$_base.dll' : 'lib$_base.so';
+final _dylib = switch (io.Platform.operatingSystem) {
+  'ios' || 'macos' => '$_package.framework/$_package',
+  'android' || 'linux' => 'lib$_libName.so',
+  'windows' => '$_libName.dll',
+  _ => throw UnsupportedError(
+      'unsupported operating system ${Platform.operatingSystem}',
+    ),
+}
 
-final Native api = NativeImpl(
-  io.Platform.isIOS || io.Platform.isMacOS
-      ? DynamicLibrary.open('$_package.framework/$_package')
-      : DynamicLibrary.open(_dylib),
-);
+final Native api = NativeImpl(_dylib);
