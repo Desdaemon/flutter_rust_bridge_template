@@ -12,10 +12,11 @@ export 'bridge_definitions.dart';
 export 'bridge_generated.dart';
 
 const _libName = 'native';
-// Use for Darwin framework lookup under the DEBUG mode.
-// Use an explicit package constant to avoid
-// if the library name and the package name are not the same.
-// The value must be equal to the package name defined in pubspec.yaml.
+
+/// Use for Darwin framework lookup.
+/// Use an explicit package constant to avoid
+/// if the library name and the package name are not the same.
+/// The value must be equal to the package name defined in pubspec.yaml.
 const _package = 'native';
 
 final _dylib = switch (Platform.operatingSystem) {
